@@ -7,6 +7,9 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: 'Inter'
+      },
+      backgroundImage: {
+        patter: 'url(/public/bg.png)'
       }
     },
   },
