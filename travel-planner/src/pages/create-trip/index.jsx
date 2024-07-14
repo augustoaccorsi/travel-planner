@@ -155,7 +155,6 @@ const CreateTrip = () => {
             {isConfirmTriptModalOpen && (
                 <ConfirmTripModal
                     setIsConfirmTriptModalOpen={setIsConfirmTriptModalOpen}
-                    handleAddInvetedUser={handleAddInvetedUser}
                     createTrip={createTrip}
                 />
             )}

@@ -34,7 +34,7 @@ const ConfirmTripModal = (props) => {
                 </div>
 
                 <form
-                    onSubmit={props.handleAddInvetedUser}
+                    onSubmit={props.createTrip}
                     className="items-center gap-2 space-y-3"
                 >
                     <div className="h-14 px-4 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center flex-1 gap-2">
@@ -56,7 +56,6 @@ const ConfirmTripModal = (props) => {
                         />
                     </div>
                     <button
-                        onClick={props.createTrip}
                         type="submit"
                         className="bg-lime-300 text-lime-950 rounded-lg px-5 h-11 font-medium flex items-center gap-2 hover:bg-lime-400 w-full text-center justify-center"
                     >
