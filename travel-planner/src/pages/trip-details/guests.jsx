@@ -1,6 +1,7 @@
 import React from 'react';
-
 import { CircleCheck, UserCog, CircleDashed } from 'lucide-react';
+import Button from '../../components/button';
+
 const Guests = () => {
     return (
         <div className="space-y-6">
@@ -40,10 +41,10 @@ const Guests = () => {
                     <CircleCheck className="size-5 shrink-0  text-lime-300" />
                 </div>
             </div>
-            <button className="bg-zinc-800 text-zinc-200 rounded-lg px-5 h-11 font-medium flex items-center gap-2 hover:bg-zinc-700 w-full justify-center">
+            <Button size={'large'}>
                 <UserCog className="size-5" />
                 Gerenciar Convidados
-            </button>
+            </Button>
         </div>
     );
 };

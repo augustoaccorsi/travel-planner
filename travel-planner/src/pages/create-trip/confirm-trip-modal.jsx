@@ -1,5 +1,6 @@
 import React from 'react';
 import { X, User, Mail } from 'lucide-react';
+import Button from '../../components/button';
 
 const ConfirmTripModal = (props) => {
     return (
@@ -55,12 +56,9 @@ const ConfirmTripModal = (props) => {
                             className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"
                         />
                     </div>
-                    <button
-                        type="submit"
-                        className="bg-lime-300 text-lime-950 rounded-lg px-5 h-11 font-medium flex items-center gap-2 hover:bg-lime-400 w-full text-center justify-center"
-                    >
+                    <Button variant={'primary'} size={'large'} type="submit">
                         Confirmar criação da viagem
-                    </button>
+                    </Button>
                 </form>
             </div>
         </div>

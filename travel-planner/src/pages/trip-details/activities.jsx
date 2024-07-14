@@ -9,7 +9,7 @@ const Activities = (props) => {
                 <h2 className="text-3xl font-semibold">Atividades</h2>
                 <Button
                     onClick={() => props.setIsCreateActivityModalOpen(true)}
-                    variant={true}
+                    variant={'primary'}
                 >
                     Cadastrar Atividade
                     <Plus className="text-lime-950 size-5" />

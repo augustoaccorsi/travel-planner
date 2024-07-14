@@ -1,5 +1,6 @@
 import React from 'react';
 import { X, AtSign, Plus } from 'lucide-react';
+import Button from '../../components/button';
 
 const InviteGuestsModal = (props) => {
     return (
@@ -58,13 +59,10 @@ const InviteGuestsModal = (props) => {
                             className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"
                         />
                     </div>
-                    <button
-                        type="submit"
-                        className="bg-lime-300 text-lime-950 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-lime-400"
-                    >
+                    <Button variant={'primary'} type="submit">
                         Convidar
                         <Plus className="text-lime-950 size-5" />
-                    </button>
+                    </Button>
                 </form>
             </div>
         </div>

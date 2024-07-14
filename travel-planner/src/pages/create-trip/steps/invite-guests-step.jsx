@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, UserRoundPlus } from 'lucide-react';
+import Button from '../../../components/button';
 
 const InviteGuestsStep = (props) => {
     return (
@@ -23,13 +24,13 @@ const InviteGuestsStep = (props) => {
 
             <div className="w-px h-6 bg-zinc-800 " />
 
-            <button
-                className="bg-lime-300 text-lime-950 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-lime-400"
+            <Button
+                variant={'primary'}
                 onClick={() => props.setIsConfirmTriptModalOpen(true)}
             >
                 Confirmar Viagem
                 <ArrowRight className="text-lime-950 size-5" />
-            </button>
+            </Button>
         </div>
     );
 };
