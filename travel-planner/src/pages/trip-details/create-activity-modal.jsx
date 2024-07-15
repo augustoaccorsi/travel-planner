@@ -1,7 +1,25 @@
 import React from 'react';
 import { X, Tag, Calendar } from 'lucide-react';
 import Button from '../../components/button';
+import { api } from '../../lib/axios';
+import { useParams } from 'react-router-dom';
 const CreateActivityModal = (props) => {
+    const { tripId } = useParams();
+
+    const createActivity = async (event) => {
+        event.preventDefault();
+
+        const data = new FormData(event.currentTarget);
+        const title = data.get('title')?.toString();
+        const occursAt = data.get('occursAt')?.toString();
+
+        await api.post(`trips/${tripId}/activities`, {
+            title: title,
+            occurs_at: occursAt,
+        });
+        props.setIsCreateActivityModalOpen(false);
+    };
+
     return (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
             <div className="w-[640px] rounded-xl py-5 px-6 bg-zinc-900 space-y-5">
@@ -23,11 +41,14 @@ const CreateActivityModal = (props) => {
                     </p>
                 </div>
 
-                <form className="items-center gap-2 space-y-3">
+                <form
+                    onSubmit={createActivity}
+                    className="items-center gap-2 space-y-3"
+                >
                     <div className="h-14 px-4 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center flex-1 gap-2">
                         <Tag className="text-zinc-400 size-5" />
                         <input
-                            name="atividade"
+                            name="title"
                             type="text"
                             placeholder="Qual a atividade?"
                             className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"

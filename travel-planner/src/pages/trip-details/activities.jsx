@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Plus, CircleCheck } from 'lucide-react';
 import Button from '../../components/button';
+import { useParams } from 'react-router-dom';
+import { api } from '../../lib/axios';
 
 const Activities = (props) => {
+    const { tripId } = useParams();
+    const [activities, setActivities] = useState([]);
+
+    const fetchData = () => {
+        api.get(`/trips/${tripId}/activities`).then((response) =>
+            console.log(response.data.activities)
+        );
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, [tripId]);
+
     return (
         <div className="flex-1 space-y-6">
             <div className="flex items-center justify-between">
