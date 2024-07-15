@@ -4,15 +4,26 @@ import InviteGuestsModal from './invite-guests-modal';
 import ConfirmTripModal from './confirm-trip-modal';
 import DestinationAndDateStep from './steps/destination-and-date-step';
 import InviteGuestsStep from './steps/invite-guests-step';
+import { api } from '../../lib/axios';
 
 const CreateTrip = () => {
     const navigate = useNavigate();
 
     const [isGuestInputOpen, setIsGuestInputOpen] = useState(false);
     const [isGuestModalOpen, setIsGuestModalOpen] = useState(false);
-    const [invitedUsers, setInvitedUsers] = useState([]);
+    const [invitedUsers, setInvitedUsers] = useState([
+        'tom.delonge@blink-182.com',
+        'mark.hoppus@blink-182.com',
+        'travis.barker@blink-182.com',
+    ]);
     const [isConfirmTriptModalOpen, setIsConfirmTriptModalOpen] =
         useState(false);
+
+    const [destination, setDestination] = useState('');
+    const [ownerName, setOwnerName] = useState('');
+    const [ownerEmail, setOwnerEmail] = useState('');
+    const [eventStartAndEndDates, setEventStartAndEndDates] =
+        useState(undefined);
 
     const handleAddInvetedUser = (event) => {
         event.preventDefault();
@@ -34,9 +45,31 @@ const CreateTrip = () => {
         );
     };
 
-    const createTrip = (event) => {
+    const createTrip = async (event) => {
         event.preventDefault();
-        navigate('/trips/123');
+
+        if (
+            !eventStartAndEndDates?.to ||
+            !eventStartAndEndDates?.from ||
+            ownerEmail === '' ||
+            ownerName === '' ||
+            destination === ''
+        ) {
+            return;
+        }
+
+        const response = await api.post('/trips', {
+            destination,
+            starts_at: eventStartAndEndDates.to,
+            ends_at: eventStartAndEndDates.to,
+            emails_to_invite: invitedUsers,
+            owner_name: ownerName,
+            owner_email: ownerEmail,
+        });
+
+        const { tripId } = response.data;
+
+        navigate(`/trips/${tripId}`);
     };
 
     return (
@@ -52,8 +85,11 @@ const CreateTrip = () => {
 
                     <div className="space-y-4">
                         <DestinationAndDateStep
+                            setDestination={setDestination}
                             isGuestInputOpen={isGuestInputOpen}
                             setIsGuestInputOpen={setIsGuestInputOpen}
+                            setEventStartAndEndDates={setEventStartAndEndDates}
+                            eventStartAndEndDates={eventStartAndEndDates}
                         />
                         {isGuestInputOpen ? (
                             <InviteGuestsStep
@@ -94,6 +130,8 @@ const CreateTrip = () => {
                 <ConfirmTripModal
                     setIsConfirmTriptModalOpen={setIsConfirmTriptModalOpen}
                     createTrip={createTrip}
+                    setOwnerName={setOwnerName}
+                    setOwnerEmail={setOwnerEmail}
                 />
             )}
         </div>

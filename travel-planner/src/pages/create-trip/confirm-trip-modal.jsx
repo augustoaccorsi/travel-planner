@@ -41,6 +41,9 @@ const ConfirmTripModal = (props) => {
                     <div className="h-14 px-4 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center flex-1 gap-2">
                         <User className="text-zinc-400 size-5" />
                         <input
+                            onChange={(event) =>
+                                props.setOwnerName(event.target.value)
+                            }
                             name="name"
                             type="text"
                             placeholder="Seu nome completo"
@@ -50,6 +53,9 @@ const ConfirmTripModal = (props) => {
                     <div className="h-14 px-4 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center flex-1 gap-2">
                         <Mail className="text-zinc-400 size-5" />
                         <input
+                            onChange={(event) =>
+                                props.setOwnerEmail(event.target.value)
+                            }
                             name="email"
                             type="email"
                             placeholder="Seu e-mail pessoal"
